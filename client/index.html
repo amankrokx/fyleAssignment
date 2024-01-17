@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- site discription meta tag -->
+    <meta name="description" content="A simple Website to search for github profiles and display repositories">
+    <title>Document</title>
+    <script src="index.js" type="module" defer></script>
+    <link rel="stylesheet" type="text/css" href="index.css" />
+</head>
+<body>
+    <div id="linear-loader" class="">
+        <div class="linear-loader-bar"></div>
+    </div>
+
+    <!-- Section for username input -->
+    <section id="username-input-section">
+        <h1>Find a GitHub profile</h1>
+        <form id="username-input-form"></form>
+            <input type="text" id="username-input" placeholder="Enter a username" />
+            <input 
+                type="submit"
+                value="Find"
+            />
+        </form>
+    </section>
+</body>
+</html>

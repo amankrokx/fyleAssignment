@@ -1,0 +1,27 @@
+{
+  "name": "fyleassignment",
+  "version": "1.0.0",
+  "description": "Assignment given by Fyle",
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/amankrokx/fyleAssignment.git"
+  },
+  "keywords": [
+    "fyle",
+    "assignment",
+    "nodejs",
+    "javascript"
+  ],
+  "author": "amankrokx",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/amankrokx/fyleAssignment/issues"
+  },
+  "homepage": "https://github.com/amankrokx/fyleAssignment#readme"
+}
