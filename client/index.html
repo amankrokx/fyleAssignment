@@ -5,25 +5,385 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- site discription meta tag -->
     <meta name="description" content="A simple Website to search for github profiles and display repositories">
-    <title>Document</title>
-    <script src="index.js" type="module" defer></script>
+    <title>Fyle Assignment</title>
     <link rel="stylesheet" type="text/css" href="index.css" />
+    <script src="index.js" type="module" defer></script>
 </head>
 <body>
-    <div id="linear-loader" class="">
+    <div id="linear-loader" class="active">
         <div class="linear-loader-bar"></div>
     </div>
 
     <!-- Section for username input -->
     <section id="username-input-section">
         <h1>Find a GitHub profile</h1>
-        <form id="username-input-form"></form>
-            <input type="text" id="username-input" placeholder="Enter a username" />
+        <form id="username-input-form">
+            <input type="text" id="username-input" placeholder="Enter a username" required minlength="1" maxlength="255" />
             <input 
                 type="submit"
                 value="Find"
             />
         </form>
+    </section>
+
+    <!-- Section for displaying user profile -->
+    <section id="user-profile-section">
+        <div class="user-profile-info">
+            <div class="user-profile-image">
+                <img
+                    src="./assets/profile.jpg"
+                    alt="User Profile Image"
+                    loading="lazy"
+                />
+            </div>
+            <div class="user-profile-details">
+                <h2 class="user-profile-name">Aman Kumar</h2>
+                <p class="user-profile-bio">Unobtrusive Programmer</p>
+                <p class="user-profile-location">
+                    <img
+                        alt="Map Pin Icon"
+                        height="16"
+                        width="16"
+                        src="data:image/svg+xml,%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20class=%22icon%20icon-tabler%20icon-tabler-map-pin%22%20width=%2224%22%20height=%2224%22%20viewBox=%220%200%2024%2024%22%20stroke-width=%222%22%20stroke=%22currentColor%22%20fill=%22none%22%20stroke-linecap=%22round%22%20stroke-linejoin=%22round%22%3E%3Cpath%20stroke=%22none%22%20d=%22M0%200h24v24H0z%22%20fill=%22none%22/%3E%3Cpath%20d=%22M9%2011a3%203%200%201%200%206%200a3%203%200%200%200%20-6%200%22%20/%3E%3Cpath%20d=%22M17.657%2016.657l-4.243%204.243a2%202%200%200%201%20-2.827%200l-4.244%20-4.243a8%208%200%201%201%2011.314%200z%22%20/%3E%3C/svg%3E"
+                    />
+                    <span>
+                        Bangalore, India
+                    </span>
+                </p>
+                <p class="user-profile-website">
+                    Twitter: <a href="https://twitter.com/amankrokx" target="_blank">@amankrokx</a>
+                </p>
+            </div>
+        </div>
+        <div class="user-profile-url">
+            <img 
+                alt="Link Icon"
+                height="24"
+                width="24"
+                src="data:image/svg+xml,%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20class=%22icon%20icon-tabler%20icon-tabler-link%22%20width=%2224%22%20height=%2224%22%20viewBox=%220%200%2024%2024%22%20stroke-width=%222%22%20stroke=%22currentColor%22%20fill=%22none%22%20stroke-linecap=%22round%22%20stroke-linejoin=%22round%22%3E%3Cpath%20stroke=%22none%22%20d=%22M0%200h24v24H0z%22%20fill=%22none%22/%3E%3Cpath%20d=%22M9%2015l6%20-6%22%20/%3E%3Cpath%20d=%22M11%206l.463%20-.536a5%205%200%200%201%207.071%207.072l-.534%20.464%22%20/%3E%3Cpath%20d=%22M13%2018l-.397%20.534a5.068%205.068%200%200%201%20-7.127%200a4.972%204.972%200%200%201%200%20-7.071l.524%20-.463%22%20/%3E%3C/svg%3E"
+            />
+            <a href="#" target="_blank">https://github.com/amankrokx</a>
+        </div>
+        <div id="user-profile-repositories" class="active">
+            <div id="user-repositories-list">
+                <div class="user-repository">
+                    <div class="user-repository-header">
+                        <h3 class="user-repository-name">AIHomeAutomation</h3>
+                        <div class="user-repository-stats">
+                            <div class="user-repository-stars">
+                                <img
+                                    src="data:image/svg+xml,%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20class=%22icon%20icon-tabler%20icon-tabler-star%22%20width=%2224%22%20height=%2224%22%20viewBox=%220%200%2024%2024%22%20stroke-width=%222%22%20stroke=%22currentColor%22%20fill=%22none%22%20stroke-linecap=%22round%22%20stroke-linejoin=%22round%22%3E%3Cpath%20stroke=%22none%22%20d=%22M0%200h24v24H0z%22%20fill=%22none%22/%3E%3Cpath%20d=%22M12%2017.75l-6.172%203.245l1.179%20-6.873l-5%20-4.867l6.9%20-1l3.086%20-6.253l3.086%206.253l6.9%201l-5%204.867l1.179%206.873z%22%20/%3E%3C/svg%3E"
+                                    alt="Star Icon"
+                                    height="16"
+                                    width="16"
+                                />
+                                Star
+                                <span>0</span>
+                            </div>
+                            <div class="user-repository-forks">
+                                <img
+                                    alt="Fork Icon"
+                                    height="16"
+                                    width="16"
+                                    src="data:image/svg+xml,%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20class=%22icon%20icon-tabler%20icon-tabler-git-fork%22%20width=%2224%22%20height=%2224%22%20viewBox=%220%200%2024%2024%22%20stroke-width=%222%22%20stroke=%22currentColor%22%20fill=%22none%22%20stroke-linecap=%22round%22%20stroke-linejoin=%22round%22%3E%3Cpath%20stroke=%22none%22%20d=%22M0%200h24v24H0z%22%20fill=%22none%22/%3E%3Cpath%20d=%22M12%2018m-2%200a2%202%200%201%200%204%200a2%202%200%201%200%20-4%200%22%20/%3E%3Cpath%20d=%22M7%206m-2%200a2%202%200%201%200%204%200a2%202%200%201%200%20-4%200%22%20/%3E%3Cpath%20d=%22M17%206m-2%200a2%202%200%201%200%204%200a2%202%200%201%200%20-4%200%22%20/%3E%3Cpath%20d=%22M7%208v2a2%202%200%200%200%202%202h6a2%202%200%200%200%202%20-2v-2%22%20/%3E%3Cpath%20d=%22M12%2012l0%204%22%20/%3E%3C/svg%3E"
+                                />
+                                Fork
+                                <span>0</span>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="user-repository-description">Leveraging descision making powers of LLM based AIs to derive intent from natural conversations in order to control home appliances.</p>
+                    <p class="user-repository-languages">
+                        <span class="user-repository-language">C/C++</span>
+                        <span class="user-repository-language">JavaScript</span>
+                        <span class="user-repository-language">HTML</span>
+                        <span class="user-repository-language">CSS</span>
+                    </p>
+                </div>
+                <div class="user-repository">
+                    <div class="user-repository-header">
+                        <h3 class="user-repository-name">AIHomeAutomation</h3>
+                        <div class="user-repository-stats">
+                            <div class="user-repository-stars">
+                                <img
+                                    src="data:image/svg+xml,%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20class=%22icon%20icon-tabler%20icon-tabler-star%22%20width=%2224%22%20height=%2224%22%20viewBox=%220%200%2024%2024%22%20stroke-width=%222%22%20stroke=%22currentColor%22%20fill=%22none%22%20stroke-linecap=%22round%22%20stroke-linejoin=%22round%22%3E%3Cpath%20stroke=%22none%22%20d=%22M0%200h24v24H0z%22%20fill=%22none%22/%3E%3Cpath%20d=%22M12%2017.75l-6.172%203.245l1.179%20-6.873l-5%20-4.867l6.9%20-1l3.086%20-6.253l3.086%206.253l6.9%201l-5%204.867l1.179%206.873z%22%20/%3E%3C/svg%3E"
+                                    alt="Star Icon"
+                                    height="16"
+                                    width="16"
+                                />
+                                Star
+                                <span>0</span>
+                            </div>
+                            <div class="user-repository-forks">
+                                <img
+                                    alt="Fork Icon"
+                                    height="16"
+                                    width="16"
+                                    src="data:image/svg+xml,%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20class=%22icon%20icon-tabler%20icon-tabler-git-fork%22%20width=%2224%22%20height=%2224%22%20viewBox=%220%200%2024%2024%22%20stroke-width=%222%22%20stroke=%22currentColor%22%20fill=%22none%22%20stroke-linecap=%22round%22%20stroke-linejoin=%22round%22%3E%3Cpath%20stroke=%22none%22%20d=%22M0%200h24v24H0z%22%20fill=%22none%22/%3E%3Cpath%20d=%22M12%2018m-2%200a2%202%200%201%200%204%200a2%202%200%201%200%20-4%200%22%20/%3E%3Cpath%20d=%22M7%206m-2%200a2%202%200%201%200%204%200a2%202%200%201%200%20-4%200%22%20/%3E%3Cpath%20d=%22M17%206m-2%200a2%202%200%201%200%204%200a2%202%200%201%200%20-4%200%22%20/%3E%3Cpath%20d=%22M7%208v2a2%202%200%200%200%202%202h6a2%202%200%200%200%202%20-2v-2%22%20/%3E%3Cpath%20d=%22M12%2012l0%204%22%20/%3E%3C/svg%3E"
+                                />
+                                Fork
+                                <span>0</span>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="user-repository-description">Leveraging descision making powers of LLM based AIs to derive intent from natural conversations in order to control home appliances.</p>
+                    <p class="user-repository-languages">
+                        <span class="user-repository-language">C/C++</span>
+                        <span class="user-repository-language">JavaScript</span>
+                        <span class="user-repository-language">HTML</span>
+                        <span class="user-repository-language">CSS</span>
+                    </p>
+                </div>
+                <div class="user-repository">
+                    <div class="user-repository-header">
+                        <h3 class="user-repository-name">AIHomeAutomation</h3>
+                        <div class="user-repository-stats">
+                            <div class="user-repository-stars">
+                                <img
+                                    src="data:image/svg+xml,%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20class=%22icon%20icon-tabler%20icon-tabler-star%22%20width=%2224%22%20height=%2224%22%20viewBox=%220%200%2024%2024%22%20stroke-width=%222%22%20stroke=%22currentColor%22%20fill=%22none%22%20stroke-linecap=%22round%22%20stroke-linejoin=%22round%22%3E%3Cpath%20stroke=%22none%22%20d=%22M0%200h24v24H0z%22%20fill=%22none%22/%3E%3Cpath%20d=%22M12%2017.75l-6.172%203.245l1.179%20-6.873l-5%20-4.867l6.9%20-1l3.086%20-6.253l3.086%206.253l6.9%201l-5%204.867l1.179%206.873z%22%20/%3E%3C/svg%3E"
+                                    alt="Star Icon"
+                                    height="16"
+                                    width="16"
+                                />
+                                Star
+                                <span>0</span>
+                            </div>
+                            <div class="user-repository-forks">
+                                <img
+                                    alt="Fork Icon"
+                                    height="16"
+                                    width="16"
+                                    src="data:image/svg+xml,%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20class=%22icon%20icon-tabler%20icon-tabler-git-fork%22%20width=%2224%22%20height=%2224%22%20viewBox=%220%200%2024%2024%22%20stroke-width=%222%22%20stroke=%22currentColor%22%20fill=%22none%22%20stroke-linecap=%22round%22%20stroke-linejoin=%22round%22%3E%3Cpath%20stroke=%22none%22%20d=%22M0%200h24v24H0z%22%20fill=%22none%22/%3E%3Cpath%20d=%22M12%2018m-2%200a2%202%200%201%200%204%200a2%202%200%201%200%20-4%200%22%20/%3E%3Cpath%20d=%22M7%206m-2%200a2%202%200%201%200%204%200a2%202%200%201%200%20-4%200%22%20/%3E%3Cpath%20d=%22M17%206m-2%200a2%202%200%201%200%204%200a2%202%200%201%200%20-4%200%22%20/%3E%3Cpath%20d=%22M7%208v2a2%202%200%200%200%202%202h6a2%202%200%200%200%202%20-2v-2%22%20/%3E%3Cpath%20d=%22M12%2012l0%204%22%20/%3E%3C/svg%3E"
+                                />
+                                Fork
+                                <span>0</span>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="user-repository-description">Leveraging descision making powers of LLM based AIs to derive intent from natural conversations in order to control home appliances.</p>
+                    <p class="user-repository-languages">
+                        <span class="user-repository-language">C/C++</span>
+                        <span class="user-repository-language">JavaScript</span>
+                        <span class="user-repository-language">HTML</span>
+                        <span class="user-repository-language">CSS</span>
+                    </p>
+                </div>
+                <div class="user-repository">
+                    <div class="user-repository-header">
+                        <h3 class="user-repository-name">AIHomeAutomation</h3>
+                        <div class="user-repository-stats">
+                            <div class="user-repository-stars">
+                                <img
+                                    src="data:image/svg+xml,%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20class=%22icon%20icon-tabler%20icon-tabler-star%22%20width=%2224%22%20height=%2224%22%20viewBox=%220%200%2024%2024%22%20stroke-width=%222%22%20stroke=%22currentColor%22%20fill=%22none%22%20stroke-linecap=%22round%22%20stroke-linejoin=%22round%22%3E%3Cpath%20stroke=%22none%22%20d=%22M0%200h24v24H0z%22%20fill=%22none%22/%3E%3Cpath%20d=%22M12%2017.75l-6.172%203.245l1.179%20-6.873l-5%20-4.867l6.9%20-1l3.086%20-6.253l3.086%206.253l6.9%201l-5%204.867l1.179%206.873z%22%20/%3E%3C/svg%3E"
+                                    alt="Star Icon"
+                                    height="16"
+                                    width="16"
+                                />
+                                Star
+                                <span>0</span>
+                            </div>
+                            <div class="user-repository-forks">
+                                <img
+                                    alt="Fork Icon"
+                                    height="16"
+                                    width="16"
+                                    src="data:image/svg+xml,%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20class=%22icon%20icon-tabler%20icon-tabler-git-fork%22%20width=%2224%22%20height=%2224%22%20viewBox=%220%200%2024%2024%22%20stroke-width=%222%22%20stroke=%22currentColor%22%20fill=%22none%22%20stroke-linecap=%22round%22%20stroke-linejoin=%22round%22%3E%3Cpath%20stroke=%22none%22%20d=%22M0%200h24v24H0z%22%20fill=%22none%22/%3E%3Cpath%20d=%22M12%2018m-2%200a2%202%200%201%200%204%200a2%202%200%201%200%20-4%200%22%20/%3E%3Cpath%20d=%22M7%206m-2%200a2%202%200%201%200%204%200a2%202%200%201%200%20-4%200%22%20/%3E%3Cpath%20d=%22M17%206m-2%200a2%202%200%201%200%204%200a2%202%200%201%200%20-4%200%22%20/%3E%3Cpath%20d=%22M7%208v2a2%202%200%200%200%202%202h6a2%202%200%200%200%202%20-2v-2%22%20/%3E%3Cpath%20d=%22M12%2012l0%204%22%20/%3E%3C/svg%3E"
+                                />
+                                Fork
+                                <span>0</span>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="user-repository-description">Leveraging descision making powers of LLM based AIs to derive intent from natural conversations in order to control home appliances.</p>
+                    <p class="user-repository-languages">
+                        <span class="user-repository-language">C/C++</span>
+                        <span class="user-repository-language">JavaScript</span>
+                        <span class="user-repository-language">HTML</span>
+                        <span class="user-repository-language">CSS</span>
+                    </p>
+                </div>
+                <div class="user-repository">
+                    <div class="user-repository-header">
+                        <h3 class="user-repository-name">AIHomeAutomation</h3>
+                        <div class="user-repository-stats">
+                            <div class="user-repository-stars">
+                                <img
+                                    src="data:image/svg+xml,%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20class=%22icon%20icon-tabler%20icon-tabler-star%22%20width=%2224%22%20height=%2224%22%20viewBox=%220%200%2024%2024%22%20stroke-width=%222%22%20stroke=%22currentColor%22%20fill=%22none%22%20stroke-linecap=%22round%22%20stroke-linejoin=%22round%22%3E%3Cpath%20stroke=%22none%22%20d=%22M0%200h24v24H0z%22%20fill=%22none%22/%3E%3Cpath%20d=%22M12%2017.75l-6.172%203.245l1.179%20-6.873l-5%20-4.867l6.9%20-1l3.086%20-6.253l3.086%206.253l6.9%201l-5%204.867l1.179%206.873z%22%20/%3E%3C/svg%3E"
+                                    alt="Star Icon"
+                                    height="16"
+                                    width="16"
+                                />
+                                Star
+                                <span>0</span>
+                            </div>
+                            <div class="user-repository-forks">
+                                <img
+                                    alt="Fork Icon"
+                                    height="16"
+                                    width="16"
+                                    src="data:image/svg+xml,%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20class=%22icon%20icon-tabler%20icon-tabler-git-fork%22%20width=%2224%22%20height=%2224%22%20viewBox=%220%200%2024%2024%22%20stroke-width=%222%22%20stroke=%22currentColor%22%20fill=%22none%22%20stroke-linecap=%22round%22%20stroke-linejoin=%22round%22%3E%3Cpath%20stroke=%22none%22%20d=%22M0%200h24v24H0z%22%20fill=%22none%22/%3E%3Cpath%20d=%22M12%2018m-2%200a2%202%200%201%200%204%200a2%202%200%201%200%20-4%200%22%20/%3E%3Cpath%20d=%22M7%206m-2%200a2%202%200%201%200%204%200a2%202%200%201%200%20-4%200%22%20/%3E%3Cpath%20d=%22M17%206m-2%200a2%202%200%201%200%204%200a2%202%200%201%200%20-4%200%22%20/%3E%3Cpath%20d=%22M7%208v2a2%202%200%200%200%202%202h6a2%202%200%200%200%202%20-2v-2%22%20/%3E%3Cpath%20d=%22M12%2012l0%204%22%20/%3E%3C/svg%3E"
+                                />
+                                Fork
+                                <span>0</span>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="user-repository-description">Leveraging descision making powers of LLM based AIs to derive intent from natural conversations in order to control home appliances.</p>
+                    <p class="user-repository-languages">
+                        <span class="user-repository-language">C/C++</span>
+                        <span class="user-repository-language">JavaScript</span>
+                        <span class="user-repository-language">HTML</span>
+                        <span class="user-repository-language">CSS</span>
+                    </p>
+                </div>
+                <div class="user-repository">
+                    <div class="user-repository-header">
+                        <h3 class="user-repository-name">AIHomeAutomation</h3>
+                        <div class="user-repository-stats">
+                            <div class="user-repository-stars">
+                                <img
+                                    src="data:image/svg+xml,%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20class=%22icon%20icon-tabler%20icon-tabler-star%22%20width=%2224%22%20height=%2224%22%20viewBox=%220%200%2024%2024%22%20stroke-width=%222%22%20stroke=%22currentColor%22%20fill=%22none%22%20stroke-linecap=%22round%22%20stroke-linejoin=%22round%22%3E%3Cpath%20stroke=%22none%22%20d=%22M0%200h24v24H0z%22%20fill=%22none%22/%3E%3Cpath%20d=%22M12%2017.75l-6.172%203.245l1.179%20-6.873l-5%20-4.867l6.9%20-1l3.086%20-6.253l3.086%206.253l6.9%201l-5%204.867l1.179%206.873z%22%20/%3E%3C/svg%3E"
+                                    alt="Star Icon"
+                                    height="16"
+                                    width="16"
+                                />
+                                Star
+                                <span>0</span>
+                            </div>
+                            <div class="user-repository-forks">
+                                <img
+                                    alt="Fork Icon"
+                                    height="16"
+                                    width="16"
+                                    src="data:image/svg+xml,%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20class=%22icon%20icon-tabler%20icon-tabler-git-fork%22%20width=%2224%22%20height=%2224%22%20viewBox=%220%200%2024%2024%22%20stroke-width=%222%22%20stroke=%22currentColor%22%20fill=%22none%22%20stroke-linecap=%22round%22%20stroke-linejoin=%22round%22%3E%3Cpath%20stroke=%22none%22%20d=%22M0%200h24v24H0z%22%20fill=%22none%22/%3E%3Cpath%20d=%22M12%2018m-2%200a2%202%200%201%200%204%200a2%202%200%201%200%20-4%200%22%20/%3E%3Cpath%20d=%22M7%206m-2%200a2%202%200%201%200%204%200a2%202%200%201%200%20-4%200%22%20/%3E%3Cpath%20d=%22M17%206m-2%200a2%202%200%201%200%204%200a2%202%200%201%200%20-4%200%22%20/%3E%3Cpath%20d=%22M7%208v2a2%202%200%200%200%202%202h6a2%202%200%200%200%202%20-2v-2%22%20/%3E%3Cpath%20d=%22M12%2012l0%204%22%20/%3E%3C/svg%3E"
+                                />
+                                Fork
+                                <span>0</span>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="user-repository-description">Leveraging descision making powers of LLM based AIs to derive intent from natural conversations in order to control home appliances.</p>
+                    <p class="user-repository-languages">
+                        <span class="user-repository-language">C/C++</span>
+                        <span class="user-repository-language">JavaScript</span>
+                        <span class="user-repository-language">HTML</span>
+                        <span class="user-repository-language">CSS</span>
+                    </p>
+                </div>
+                <div class="user-repository">
+                    <div class="user-repository-header">
+                        <h3 class="user-repository-name">AIHomeAutomation</h3>
+                        <div class="user-repository-stats">
+                            <div class="user-repository-stars">
+                                <img
+                                    src="data:image/svg+xml,%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20class=%22icon%20icon-tabler%20icon-tabler-star%22%20width=%2224%22%20height=%2224%22%20viewBox=%220%200%2024%2024%22%20stroke-width=%222%22%20stroke=%22currentColor%22%20fill=%22none%22%20stroke-linecap=%22round%22%20stroke-linejoin=%22round%22%3E%3Cpath%20stroke=%22none%22%20d=%22M0%200h24v24H0z%22%20fill=%22none%22/%3E%3Cpath%20d=%22M12%2017.75l-6.172%203.245l1.179%20-6.873l-5%20-4.867l6.9%20-1l3.086%20-6.253l3.086%206.253l6.9%201l-5%204.867l1.179%206.873z%22%20/%3E%3C/svg%3E"
+                                    alt="Star Icon"
+                                    height="16"
+                                    width="16"
+                                />
+                                Star
+                                <span>0</span>
+                            </div>
+                            <div class="user-repository-forks">
+                                <img
+                                    alt="Fork Icon"
+                                    height="16"
+                                    width="16"
+                                    src="data:image/svg+xml,%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20class=%22icon%20icon-tabler%20icon-tabler-git-fork%22%20width=%2224%22%20height=%2224%22%20viewBox=%220%200%2024%2024%22%20stroke-width=%222%22%20stroke=%22currentColor%22%20fill=%22none%22%20stroke-linecap=%22round%22%20stroke-linejoin=%22round%22%3E%3Cpath%20stroke=%22none%22%20d=%22M0%200h24v24H0z%22%20fill=%22none%22/%3E%3Cpath%20d=%22M12%2018m-2%200a2%202%200%201%200%204%200a2%202%200%201%200%20-4%200%22%20/%3E%3Cpath%20d=%22M7%206m-2%200a2%202%200%201%200%204%200a2%202%200%201%200%20-4%200%22%20/%3E%3Cpath%20d=%22M17%206m-2%200a2%202%200%201%200%204%200a2%202%200%201%200%20-4%200%22%20/%3E%3Cpath%20d=%22M7%208v2a2%202%200%200%200%202%202h6a2%202%200%200%200%202%20-2v-2%22%20/%3E%3Cpath%20d=%22M12%2012l0%204%22%20/%3E%3C/svg%3E"
+                                />
+                                Fork
+                                <span>0</span>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="user-repository-description">Leveraging descision making powers of LLM based AIs to derive intent from natural conversations in order to control home appliances.</p>
+                    <p class="user-repository-languages">
+                        <span class="user-repository-language">C/C++</span>
+                        <span class="user-repository-language">JavaScript</span>
+                        <span class="user-repository-language">HTML</span>
+                        <span class="user-repository-language">CSS</span>
+                    </p>
+                </div>
+                <div class="user-repository">
+                    <div class="user-repository-header">
+                        <h3 class="user-repository-name">AIHomeAutomation</h3>
+                        <div class="user-repository-stats">
+                            <div class="user-repository-stars">
+                                <img
+                                    src="data:image/svg+xml,%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20class=%22icon%20icon-tabler%20icon-tabler-star%22%20width=%2224%22%20height=%2224%22%20viewBox=%220%200%2024%2024%22%20stroke-width=%222%22%20stroke=%22currentColor%22%20fill=%22none%22%20stroke-linecap=%22round%22%20stroke-linejoin=%22round%22%3E%3Cpath%20stroke=%22none%22%20d=%22M0%200h24v24H0z%22%20fill=%22none%22/%3E%3Cpath%20d=%22M12%2017.75l-6.172%203.245l1.179%20-6.873l-5%20-4.867l6.9%20-1l3.086%20-6.253l3.086%206.253l6.9%201l-5%204.867l1.179%206.873z%22%20/%3E%3C/svg%3E"
+                                    alt="Star Icon"
+                                    height="16"
+                                    width="16"
+                                />
+                                Star
+                                <span>0</span>
+                            </div>
+                            <div class="user-repository-forks">
+                                <img
+                                    alt="Fork Icon"
+                                    height="16"
+                                    width="16"
+                                    src="data:image/svg+xml,%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20class=%22icon%20icon-tabler%20icon-tabler-git-fork%22%20width=%2224%22%20height=%2224%22%20viewBox=%220%200%2024%2024%22%20stroke-width=%222%22%20stroke=%22currentColor%22%20fill=%22none%22%20stroke-linecap=%22round%22%20stroke-linejoin=%22round%22%3E%3Cpath%20stroke=%22none%22%20d=%22M0%200h24v24H0z%22%20fill=%22none%22/%3E%3Cpath%20d=%22M12%2018m-2%200a2%202%200%201%200%204%200a2%202%200%201%200%20-4%200%22%20/%3E%3Cpath%20d=%22M7%206m-2%200a2%202%200%201%200%204%200a2%202%200%201%200%20-4%200%22%20/%3E%3Cpath%20d=%22M17%206m-2%200a2%202%200%201%200%204%200a2%202%200%201%200%20-4%200%22%20/%3E%3Cpath%20d=%22M7%208v2a2%202%200%200%200%202%202h6a2%202%200%200%200%202%20-2v-2%22%20/%3E%3Cpath%20d=%22M12%2012l0%204%22%20/%3E%3C/svg%3E"
+                                />
+                                Fork
+                                <span>0</span>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="user-repository-description">Leveraging descision making powers of LLM based AIs to derive intent from natural conversations in order to control home appliances.</p>
+                    <p class="user-repository-languages">
+                        <span class="user-repository-language">C/C++</span>
+                        <span class="user-repository-language">JavaScript</span>
+                        <span class="user-repository-language">HTML</span>
+                        <span class="user-repository-language">CSS</span>
+                    </p>
+                </div>
+                
+            </div>
+            <div id="user-repositories-loader">
+                <img
+                    alt="Loading Icon"
+                    height="32"
+                    width="32"
+                    src="data:image/svg+xml,%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20class=%22icon%20icon-tabler%20icon-tabler-loader%22%20width=%2224%22%20height=%2224%22%20viewBox=%220%200%2024%2024%22%20stroke-width=%222%22%20stroke=%22currentColor%22%20fill=%22none%22%20stroke-linecap=%22round%22%20stroke-linejoin=%22round%22%3E%3Cpath%20stroke=%22none%22%20d=%22M0%200h24v24H0z%22%20fill=%22none%22/%3E%3Cpath%20d=%22M12%206l0%20-3%22%20/%3E%3Cpath%20d=%22M16.25%207.75l2.15%20-2.15%22%20/%3E%3Cpath%20d=%22M18%2012l3%200%22%20/%3E%3Cpath%20d=%22M16.25%2016.25l2.15%202.15%22%20/%3E%3Cpath%20d=%22M12%2018l0%203%22%20/%3E%3Cpath%20d=%22M7.75%2016.25l-2.15%202.15%22%20/%3E%3Cpath%20d=%22M6%2012l-3%200%22%20/%3E%3Cpath%20d=%22M7.75%207.75l-2.15%20-2.15%22%20/%3E%3C/svg%3E"
+                />
+            </div>
+            <div class="user-repositories-footer">
+                <!-- sort by older/newer -->
+                <div class="sort-by">
+                    <span>Sort By :</span>
+                    <button href="#" class="active">Newest</button>
+                    <button href="#" class="">Oldest</button>
+                </div>
+                <!-- pagination -->
+                <div class="pagination">
+                    <button href="#" class="pagination-link">
+                        <img
+                            alt="Previous Icon"
+                            height="24"
+                            width="24"
+                            src="data:image/svg+xml,%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20class=%22icon%20icon-tabler%20icon-tabler-chevrons-left%22%20width=%2224%22%20height=%2224%22%20viewBox=%220%200%2024%2024%22%20stroke-width=%222%22%20stroke=%22currentColor%22%20fill=%22none%22%20stroke-linecap=%22round%22%20stroke-linejoin=%22round%22%3E%3Cpath%20stroke=%22none%22%20d=%22M0%200h24v24H0z%22%20fill=%22none%22/%3E%3Cpath%20d=%22M11%207l-5%205l5%205%22%20/%3E%3Cpath%20d=%22M17%207l-5%205l5%205%22%20/%3E%3C/svg%3E"
+                        />
+                    </button>
+                    <button href="#" class="pagination-link">1</button>
+                    <button href="#" class="pagination-link">2</button>
+                    <button href="#" class="pagination-link">3</button>
+                    <button href="#" class="pagination-link">4</button>
+                    <button href="#" class="pagination-link active">5</button>
+                    <button href="#" class="pagination-link">6</button>
+                    <button href="#" class="pagination-link">7</button>
+                    <button href="#" class="pagination-link">8</button>
+                    <button href="#" class="pagination-link">9</button>
+                    <button href="#" class="pagination-link">
+                        <img
+                            alt="Next Icon"
+                            height="24"
+                            width="24"
+                            src="data:image/svg+xml,%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20class=%22icon%20icon-tabler%20icon-tabler-chevrons-right%22%20width=%2224%22%20height=%2224%22%20viewBox=%220%200%2024%2024%22%20stroke-width=%222%22%20stroke=%22currentColor%22%20fill=%22none%22%20stroke-linecap=%22round%22%20stroke-linejoin=%22round%22%3E%3Cpath%20stroke=%22none%22%20d=%22M0%200h24v24H0z%22%20fill=%22none%22/%3E%3Cpath%20d=%22M7%207l5%205l-5%205%22%20/%3E%3Cpath%20d=%22M13%207l5%205l-5%205%22%20/%3E%3C/svg%3E"
+                        />
+                    </button>
+            </div>
+        </div>
     </section>
 </body>
 </html>

@@ -26,8 +26,7 @@ export default function requestHandler(routes) {
                 const path = 
                     "./client" + // prepend the path with the client folder
                     (req.url === "/" ? "/index.html" : req.url.split("?")[ 0 ]) // if the url is /, serve index.html, else serve the url
-                readFile(path)
-                    .then((readStream) => {
+                const readStream = readFile(path)
                         // If the file exists, serve it
                         if (readStream) {
                             res.writeHead(200)
@@ -37,16 +36,11 @@ export default function requestHandler(routes) {
                             readStream.on("close", () => res.end())
                             return
                         }
-                    })
-                    .catch((error) => {
                         // If the file doesn't exist, throw an error
                         throw {
                             code: 404,
                             message: "File not found",
                         }
-                    })
-
-                return
             }
 
             // No route defined for this URL

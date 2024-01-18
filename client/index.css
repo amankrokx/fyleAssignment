@@ -12,6 +12,11 @@
     --secondary-color: #24292e;
     --tertiary-color: #e1e4e8;
     --quaternary-color: #586069;
+    --shadow-close: 0 1px 0 rgba(27, 31, 35, 0.04);
+    --shadow-far: 0 1px 0 rgba(27, 31, 35, 0.04), 0 8px 24px rgba(149, 157, 165, 0.2);
+    --border-inactive: 1px solid var(--tertiary-color);
+    --border-active: 1px solid var(--primary-color);
+    --transition-all-linear: all 0.3s ease;
 }
 
 body {
@@ -33,7 +38,7 @@ body {
     /* Blue color from GitHub */
     background: var(--primary-color);
     z-index: 9999;
-    transition: all 0.3s ease;
+    transition: var(--transition-all-linear);
     transform: translateX(-100%);
 }
 
@@ -63,36 +68,34 @@ body {
 }
 
 /* GitHub username input section */
-/*
-<section id="username-input-section">
-    <h1>Find a GitHub profile:</h1>
-    <form>
-        <input type="text" id="username-input" placeholder="Enter a username" />
-        <input type="submit" value="Find" />
-    </form>
-</section>
-*/
 #username-input-section {
-    display: flex;
+    display: none; /* Initially none, then flex */
     flex-direction: column;
     align-items: center;
     justify-content: center;
     /* height: 100vh; */
     width: fit-content;
-    border: var(--tertiary-color) 1px solid;
+    border: var(--border-inactive);
+    box-shadow: var(--shadow-close);
     padding: 2rem;
     border-radius: 8px;
-    transition: all 0.3s ease;
+    transition: var(--transition-all-linear);
+}
+
+#username-input-section.active {
+    display: flex;
 }
 
 /* On mouse over for #username-inpput-section */
 #username-input-section:hover {
-    border: var(--primary-color) 1px solid;
+    border: var(--border-active);
+    box-shadow: var(--shadow-far);
 }
 
 #username-input-section h1 {
     font-size: 2rem;
     margin-bottom: 1rem;
+    color: var(--primary-color);
 }
 
 #username-input-section input {
@@ -103,10 +106,12 @@ body {
     border-radius: 4px;
     font-size: 1rem;
     margin-bottom: 1rem;
-    transition: all 0.3s ease;
+    transition: var(--transition-all-linear);
 }
 
-#username-input-section input:hover, #username-input-section input:focus {
+#username-input-section input:hover,
+#username-input-section input:focus,
+#username-input-section input:active {
     outline: none;
     border: 1px solid var(--primary-color);
 }
@@ -116,8 +121,352 @@ body {
     color: white;
     border: none;
     cursor: pointer;
+    box-shadow: var(--shadow-close);
 }
 
-#username-input-section input[type="submit"]:hover, #username-input-section input[type="submit"]:focus {
+#username-input-section input[type="submit"]:hover,
+#username-input-section input[type="submit"]:focus,
+#username-input-section input[type="submit"]:active {
     background: var(--primary-color);
+    box-shadow: var(--shadow-far);
+}
+
+/* GitHub user profile section */
+#user-profile-section {
+    display: none; /* Initially none, then flex */
+    flex-direction: column;
+    height: 100%;
+    width: 100%;
+    padding: 2rem;
+    flex-wrap: nowrap;
+    /* background-color: var(--tertiary-color); */
+}
+
+#user-profile-section.active {
+    display: flex;
+}
+
+#user-profile-section .user-profile-info {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    width: 100%;
+    margin-bottom: 1rem;
+}
+
+#user-profile-section .user-profile-info .user-profile-image {
+    display: block;
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    margin-bottom: auto;
+    border: var(--border-inactive);
+    padding: 8px;
+    /* margin: 0 1rem; */
+    box-shadow: var(--shadow-close);
+    background-color: white;
+    transition: var(--transition-all-linear);
+}
+#user-profile-section .user-profile-info .user-profile-image:hover {
+    border: var(--border-active);
+    box-shadow: var(--shadow-far);
+}
+#user-profile-section .user-profile-info .user-profile-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+#user-profile-section .user-profile-info .user-profile-details {
+    display: flex;
+    flex-grow: 1;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    margin-left: 2rem;
+    gap: 1rem;
+}
+#user-profile-section .user-profile-info .user-profile-details .user-profile-name {
+    font-size: 2rem;
+    font-weight: 600;
+}
+#user-profile-section .user-profile-info .user-profile-details p {
+    color: var(--quaternary-color);
+    font-size: 1.1rem;
+    font-weight: 600;
+}
+#user-profile-section .user-profile-info .user-profile-details p.user-profile-location {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 0.5rem;
+}
+
+#user-profile-section .user-profile-url {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    width: 100%;
+    margin-bottom: 2rem;
+
+}
+#user-profile-section .user-profile-url img {
+    width: 24px;
+    height: 24px;
+    margin-right: 0.5rem;
+}
+#user-profile-section .user-profile-url a {
+    color: var(--secondary-color);
+    text-decoration: none;
+    font-size: 1.1rem;
+    font-weight: 600;
+    transition: var(--transition-all-linear);
+}
+#user-profile-section .user-profile-url a:hover {
+    color: var(--primary-color);
+}
+
+/* GitHub user repositories section */
+#user-profile-repositories {
+    display: none; /* Initially none, then block */
+}
+#user-profile-repositories.active {
+    display: block;
+}
+
+#user-repositories-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
+    gap: 1rem;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+}
+
+#user-repositories-list .user-repository {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    width: 100%;
+    /* height: 200px; */
+    border-radius: 8px;
+    border: var(--border-inactive);
+    padding: 1rem;
+    box-shadow: var(--shadow-close);
+    transition: var(--transition-all-linear);
+}
+#user-repositories-list .user-repository:hover {
+    border: var(--border-active);
+    box-shadow: var(--shadow-far);
+}
+#user-repositories-list .user-repository .user-repository-header {
+    /* contains name, stars and forks */
+    display: flex;
+    flex-direction: row;
+    align-items: baseline;
+    justify-content: space-between;
+    width: 100%;   
+}
+
+#user-repositories-list .user-repository .user-repository-header .user-repository-name {
+    color: var(--primary-color);
+    font-size: 1.3rem;
+    font-weight: 600;
+    /* margin-bottom: 0.5rem; */
+}
+#user-repositories-list .user-repository .user-repository-header .user-repository-stats {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 1rem;
+}
+#user-repositories-list .user-repository .user-repository-header .user-repository-stats > div {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 0.5rem;
+    font-size: 1rem;
+    font-weight: 600;
+    border: var(--border-inactive);
+    padding: 0.1rem 0.5rem;
+    border-radius: 4px;
+    background-color: var(--tertiary-color);
+    transition: var(--transition-all-linear);
+}
+#user-repositories-list .user-repository .user-repository-header .user-repository-stats > div:hover {
+    border: var(--border-active);
+    background-color: white;
+}
+#user-repositories-list .user-repository .user-repository-header .user-repository-stats > div > img {
+    width: 16px;
+    height: 16px;
+}
+#user-repositories-list .user-repository .user-repository-description {
+    padding: 1rem 0;
+    color: var(--quaternary-color);
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+}
+#user-repositories-list .user-repository .user-repository-languages {
+    /* contains span tags to be displayed as blocks */
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 0.5rem;
+    margin-bottom: 0.5rem;
+    flex-wrap: wrap;
+}
+#user-repositories-list .user-repository .user-repository-languages span {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.1rem 0.5rem;
+    border-radius: 4px;
+    font-size: 1rem;
+    font-weight: 600;
+    color: white;
+    cursor: pointer;
+    background-color: var(--primary-color);
+    transition: var(--transition-all-linear);
+}
+#user-repositories-list .user-repository .user-repository-languages span:hover {
+    background-color: var(--primary-color-light);
+}
+
+/* User repository loader icon */
+#user-repositories-loader {
+    display: none;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100px;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+}
+/* rotating animation */
+@keyframes rotate {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+#user-repositories-loader img {
+    width: 32px;
+    height: 32px;
+    animation: rotate 4s infinite linear;
+}
+#user-repositories-loader.active {
+    display: flex;
+}
+
+/* GitHub user repository footer */
+div.user-repositories-footer {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    /* width: 80%; */
+    padding: 1rem 0;
+    margin-bottom: 1rem;
+    align-items: flex-end;
+    flex-wrap: wrap;
+}
+/* Contains pagination and sort by older and newer */
+/* Pagination */
+div.pagination {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    /* gap: 1rem; */
+    margin-top: 1rem;
+}
+
+div.pagination button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 0;
+    border: var(--border-inactive);
+    border-left: 0;
+    color: var(--primary-color);
+    background-color: white;
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: var(--transition-all-linear);
+}
+div.pagination button img {
+    width: 24px;
+    height: 24px;
+    /* making svg in data uri color to --primary-color */
+    filter: invert(30%) sepia(100%) saturate(500%) hue-rotate(180deg);
+}
+div.pagination button:last-child {
+    border-radius: 0 4px 4px 0;
+}
+div.pagination button:first-child {
+    border-radius: 4px 0 0 4px;
+    border-left: var(--border-inactive);
+}
+div.pagination button:hover {
+    border: var(--border-active);
+    color: white;
+    background-color: var(--primary-color-light);
+}
+div.pagination button.active {
+    border: 0;
+    color: white;
+    background-color: var(--primary-color);
+}
+
+div.user-repositories-footer .sort-by {
+    /* has 1 span containung text, 2 buttons for Newest, Oldest */
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+
+}
+
+div.user-repositories-footer .sort-by span {
+    color: var(--quaternary-color);
+    font-size: 1.1rem;
+    font-weight: 600;
+}
+div.user-repositories-footer .sort-by button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100px;
+    height: 36px;
+    border-radius: 4px;
+    border: var(--border-inactive);
+    color: var(--quaternary-color);
+    background-color: white;
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: var(--transition-all-linear);
+}
+div.user-repositories-footer .sort-by button:hover {
+    border: var(--border-active);
+    color: white;
+    background-color: var(--primary-color-light);
+}
+div.user-repositories-footer .sort-by button.active {
+    border: 0;
+    color: white;
+    background-color: var(--primary-color);
 }

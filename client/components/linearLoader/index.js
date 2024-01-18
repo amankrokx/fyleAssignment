@@ -1,38 +1,57 @@
 /**
- * @name linearLoader
- * @description JS for linearLoader component
+ * @name LinearLoader
+ * @description Class for linearLoader component
  */
-
-/**
- * @description Gives methods to toggle .active class on linearLoader
- * @param {String} id id of html element to which .active class is to be added
- */
-export default function linearLoader (id) {
-
+class LinearLoader {
     /**
-     * @description Adds .active class to the element with given id
+     * @description Constructs a new LinearLoader instance
+     * @param {HTMLElement|String} element - The element to add the .active class to
      */
-    function show () {
-        document.getElementById(id).classList.add("active")
+    constructor(element) {
+        if (typeof element === "string")
+            element = document.getElementById(element)
+
+        if (element)
+            this.element = element
     }
 
     /**
-     * @description Removes .active class from the element with given id
+     * @description Change the element to a linearLoader
+     * @param {HTMLElement|String} element - The element to change to a linearLoader
      */
-    function hide () {
-        document.getElementById(id).classList.remove("active")
+    changeElement(element) {
+        if (typeof element === "string")
+            this.element = document.getElementById(element)
+
+        if (!element)
+            throw new Error("linearLoader: element not found")
     }
 
     /**
-     * @description Toggles .active class on the element with given id
+     * @description Adds .active class to the element
      */
-    function toggle () {
-        document.getElementById(id).classList.toggle("active")
+    show() {
+        if (!this.element) return
+        this.element.classList.add("active")
     }
 
-    return {
-        show,
-        hide,
-        toggle
+    /**
+     * @description Removes .active class from the element
+     */
+    hide() {
+        if (!this.element) return
+        this.element.classList.remove("active")
+    }
+
+    /**
+     * @description Toggles .active class on the element
+     */
+    toggle() {
+        if (!this.element) return
+        this.element.classList.toggle("active")
     }
 }
+
+const linearLoader = new LinearLoader("linear-loader")
+
+export default linearLoader
