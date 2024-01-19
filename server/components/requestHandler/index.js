@@ -1,5 +1,6 @@
 import http from "http";
 import readFile from "../readFile/index.js";
+import { getMimeType } from "./getMimeType.js";
 
 /**
  * Handles incoming HTTP requests and routes them to the appropriate handler.
@@ -29,9 +30,13 @@ export default function requestHandler(routes) {
                 const readStream = readFile(path)
                         // If the file exists, serve it
                         if (readStream) {
+                            // write correct mime type in header
+                            const mimeType = getMimeType(path)
+                            res.setHeader("Content-Type", mimeType)
+                            // write the status code in the header
                             res.writeHead(200)
-                            readStream.pipe(res) // pipe the read stream to the response stream
-
+                            // pipe the read stream to the response stream
+                            readStream.pipe(res)
                             // close the response stream
                             readStream.on("close", () => res.end())
                             return

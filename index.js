@@ -1,6 +1,6 @@
 import http from 'http'
 import loadEnv from './server/components/loadEnv/index.js'
-import requestHandler from './server/components/requestHandler/requestHandler.js'
+import requestHandler from './server/components/requestHandler/index.js'
 import routes from './server/routes/index.js'
 
 // Load environment variables from .env file
