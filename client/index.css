@@ -78,6 +78,7 @@ body {
     border: var(--border-inactive);
     box-shadow: var(--shadow-close);
     padding: 2rem;
+    margin: 0.5rem;
     border-radius: 8px;
     transition: var(--transition-all-linear);
 }
@@ -129,6 +130,58 @@ body {
 #username-input-section input[type="submit"]:active {
     background: var(--primary-color);
     box-shadow: var(--shadow-far);
+}
+
+#username-input-list {
+    /* position: absolute; */
+    display: none; /* Initially none, then inline-block */
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    margin: 0.5rem 0;
+    width: 100%;
+    padding: 0 0.5rem;
+    margin-bottom: 1rem;
+    transition: var(--transition-all-linear);
+}
+#username-input-list.active {
+    display: inline-block;
+}
+#username-input-list .users {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    flex-wrap: nowrap;
+    overflow-y: scroll;
+    max-height: 240px;
+    width: 100%;
+}
+#username-input-list .users .user {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    /* justify-content: flex; */
+    /* gap: 1rem; */
+    padding: 0.5rem;
+    width: 100%;
+    border-bottom: var(--border-inactive);
+    /* border-bottom-width: 2px; */
+    transition: var(--transition-all-linear);
+}
+#username-input-list .users .user:hover {
+    border: var(--border-active);
+    background-color: var(--primary-color-light);
+    border-radius: 4px;
+}
+#username-input-list .users .user:last-child {
+    border-bottom: 0;
+}
+#username-input-list .users .user img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    margin-right: 1rem;
 }
 
 /* GitHub user profile section */
@@ -203,6 +256,12 @@ body {
     justify-content: flex-start;
     gap: 0.5rem;
 }
+#user-profile-section .user-profile-info .user-profile-details p.user-profile-location img {
+    width: 16px;
+    height: 16px;
+    /* data uri */
+    content: url("data:image/svg+xml,%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20class=%22icon%20icon-tabler%20icon-tabler-map-pin%22%20width=%2224%22%20height=%2224%22%20viewBox=%220%200%2024%2024%22%20stroke-width=%222%22%20stroke=%22currentColor%22%20fill=%22none%22%20stroke-linecap=%22round%22%20stroke-linejoin=%22round%22%3E%3Cpath%20stroke=%22none%22%20d=%22M0%200h24v24H0z%22%20fill=%22none%22/%3E%3Cpath%20d=%22M9%2011a3%203%200%201%200%206%200a3%203%200%200%200%20-6%200%22%20/%3E%3Cpath%20d=%22M17.657%2016.657l-4.243%204.243a2%202%200%200%201%20-2.827%200l-4.244%20-4.243a8%208%200%201%201%2011.314%200z%22%20/%3E%3C/svg%3E");
+}
 
 #user-profile-section .user-profile-url {
     display: flex;
@@ -216,6 +275,8 @@ body {
     width: 24px;
     height: 24px;
     margin-right: 0.5rem;
+    content: url("data:image/svg+xml,%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20class=%22icon%20icon-tabler%20icon-tabler-link%22%20width=%2224%22%20height=%2224%22%20viewBox=%220%200%2024%2024%22%20stroke-width=%222%22%20stroke=%22currentColor%22%20fill=%22none%22%20stroke-linecap=%22round%22%20stroke-linejoin=%22round%22%3E%3Cpath%20stroke=%22none%22%20d=%22M0%200h24v24H0z%22%20fill=%22none%22/%3E%3Cpath%20d=%22M9%2015l6%20-6%22%20/%3E%3Cpath%20d=%22M11%206l.463%20-.536a5%205%200%200%201%207.071%207.072l-.534%20.464%22%20/%3E%3Cpath%20d=%22M13%2018l-.397%20.534a5.068%205.068%200%200%201%20-7.127%200a4.972%204.972%200%200%201%200%20-7.071l.524%20-.463%22%20/%3E%3C/svg%3E");
+
 }
 #user-profile-section .user-profile-url a {
     color: var(--secondary-color);
@@ -304,6 +365,12 @@ body {
 #user-repositories-list .user-repository .user-repository-header .user-repository-stats > div > img {
     width: 16px;
     height: 16px;
+}
+#user-repositories-list .user-repository .user-repository-header .user-repository-stats > .user-repository-stars > img {
+    content: url("data:image/svg+xml,%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20class=%22icon%20icon-tabler%20icon-tabler-star%22%20width=%2224%22%20height=%2224%22%20viewBox=%220%200%2024%2024%22%20stroke-width=%222%22%20stroke=%22currentColor%22%20fill=%22none%22%20stroke-linecap=%22round%22%20stroke-linejoin=%22round%22%3E%3Cpath%20stroke=%22none%22%20d=%22M0%200h24v24H0z%22%20fill=%22none%22/%3E%3Cpath%20d=%22M12%2017.75l-6.172%203.245l1.179%20-6.873l-5%20-4.867l6.9%20-1l3.086%20-6.253l3.086%206.253l6.9%201l-5%204.867l1.179%206.873z%22%20/%3E%3C/svg%3E");
+}
+#user-repositories-list .user-repository .user-repository-header .user-repository-stats > .user-repository-forks > img {
+    content: url("data:image/svg+xml,%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20class=%22icon%20icon-tabler%20icon-tabler-git-fork%22%20width=%2224%22%20height=%2224%22%20viewBox=%220%200%2024%2024%22%20stroke-width=%222%22%20stroke=%22currentColor%22%20fill=%22none%22%20stroke-linecap=%22round%22%20stroke-linejoin=%22round%22%3E%3Cpath%20stroke=%22none%22%20d=%22M0%200h24v24H0z%22%20fill=%22none%22/%3E%3Cpath%20d=%22M12%2018m-2%200a2%202%200%201%200%204%200a2%202%200%201%200%20-4%200%22%20/%3E%3Cpath%20d=%22M7%206m-2%200a2%202%200%201%200%204%200a2%202%200%201%200%20-4%200%22%20/%3E%3Cpath%20d=%22M17%206m-2%200a2%202%200%201%200%204%200a2%202%200%201%200%20-4%200%22%20/%3E%3Cpath%20d=%22M7%208v2a2%202%200%200%200%202%202h6a2%202%200%200%200%202%20-2v-2%22%20/%3E%3Cpath%20d=%22M12%2012l0%204%22%20/%3E%3C/svg%3E");
 }
 #user-repositories-list .user-repository .user-repository-description {
     padding: 1rem 0;
