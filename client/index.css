@@ -99,7 +99,7 @@ body {
     color: var(--primary-color);
 }
 
-#username-input-section input {
+#username-input-section input, #download-resume {
     width: 100%;
     height: 40px;
     padding: 0 1rem;
@@ -124,10 +124,23 @@ body {
     cursor: pointer;
     box-shadow: var(--shadow-close);
 }
+#download-resume:hover {
+    color: white;
+}
+#download-resume {
+    width: calc(100% - 0.25rem);
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+}
 
 #username-input-section input[type="submit"]:hover,
 #username-input-section input[type="submit"]:focus,
-#username-input-section input[type="submit"]:active {
+#username-input-section input[type="submit"]:active,
+#download-resume:hover,
+#download-resume:focus{
     background: var(--primary-color);
     box-shadow: var(--shadow-far);
 }
