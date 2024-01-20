@@ -1,4 +1,4 @@
-import gitHubAPIs from "../GitHubAPIs/index.js";
+import gitHubAPIs from "./gitHubAPIs/index.js";
 /**
  * @description: This is a component to prepare html from json data
  */
