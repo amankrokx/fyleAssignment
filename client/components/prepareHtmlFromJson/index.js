@@ -123,8 +123,101 @@ export async function getGitHubUser (username) {
  * @param {Object} paginateInfo
  * @param {number} paginateInfo.page
  * @param {number} paginateInfo.perPage
- * @returns {Promise<string[]>}
+ * @returns {Promise<{html: string[], pageInfo: {first: number, prev: number, next: number, last: number, perPage: number, orderBy: string}}>}
  */
-export async function getGitHubUserRepositories(username, paginateInfo) {
+export async function getGitHubUserRepositories(username, page = 1, perPage = 10, orderBy = "newest") {
+    /*
+    {
+        pageInfo: {
+            first: 1,
+            prev: 1,
+            next: 2,
+            last: 40,
+            perPage: 1,
+            orderBy: 'newest'
+        },
+        results: [
+            {
+                name: 'fyleAssignment',
+                html_url: 'https://github.com/amankrokx/fyleAssignment',
+                description: 'Assignment given by Fyle',
+                fork: false,
+                forks_url: 'https://api.github.com/repos/amankrokx/fyleAssignment/forks',
+                languages_url: 'https://api.github.com/repos/amankrokx/fyleAssignment/languages',
+                stargazers_count: 0,
+                language: 'JavaScript',
+                forks_count: 0,
+                forks: 0,
+            }
+        ]
+    }
+    */
 
+    const data = await gitHubAPIs.getRepositories(username, page, perPage, "updated", orderBy)
+    // for every repo in results, gather the languages
+    for (let repo of data.results) {
+        try {
+            const languages = await gitHubAPIs.getRepositoryLanguages(repo.languages_url)
+            repo.languages = Object.keys(languages)
+        } catch (error) {
+            console.error(error)
+            repo.languages = []
+        }
+    }
+    /*
+    <div class="user-repository">
+        <div class="user-repository-header">
+            <h3 class="user-repository-name">AIHomeAutomation</h3>
+            <div class="user-repository-stats">
+                <div class="user-repository-stars">
+                    <img alt="Star Icon" />
+                    Star
+                    <span>0</span>
+                </div>
+                <div class="user-repository-forks">
+                    <img alt="Fork Icon" />
+                    Fork
+                    <span>0</span>
+                </div>
+            </div>
+        </div>
+        <p class="user-repository-description">Leveraging descision making powers of LLM based AIs to derive intent from natural conversations in order to control home appliances.</p>
+        <p class="user-repository-languages">
+            <span class="user-repository-language">C/C++</span>
+            <span class="user-repository-language">JavaScript</span>
+            <span class="user-repository-language">HTML</span>
+            <span class="user-repository-language">CSS</span>
+        </p>
+    </div>
+    */
+
+    const html = data.results.map((repo) => {
+        return `
+            <div class="user-repository">
+                <div class="user-repository-header">
+                    <h3 class="user-repository-name">${repo.name}</h3>
+                    <div class="user-repository-stats">
+                        <div class="user-repository-stars">
+                            <img alt="Star Icon" />
+                            Star
+                            <span>${repo.stargazers_count}</span>
+                        </div>
+                        <div class="user-repository-forks">
+                            <img alt="Fork Icon" />
+                            Fork
+                            <span>${repo.forks_count}</span>
+                        </div>
+                    </div>
+                </div>
+                <p class="user-repository-description">${repo.description}</p>
+                <p class="user-repository-languages">
+                    ${repo.languages.map((language) => `<span class="user-repository-language">${language}</span>`).join("")}
+                </p>
+            </div>
+        `
+    })
+    return {
+        html,
+        pageInfo: data.pageInfo,
+    }
 }

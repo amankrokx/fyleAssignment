@@ -25,47 +25,7 @@
                 <div class="users">
                     <div class="user">
                         <img
-                            src="./assets/profile.jpg"
-                            height="32"
-                            width="32"
-                            alt="User Profile Image"
-                            loading="lazy"
-                        />
-                        <span class="user-name">Aman Kumar</span>
-                    </div>
-                    <div class="user">
-                        <img
-                            src="./assets/profile.jpg"
-                            height="32"
-                            width="32"
-                            alt="User Profile Image"
-                            loading="lazy"
-                        />
-                        <span class="user-name">Aman Kumar</span>
-                    </div>
-                    <div class="user">
-                        <img
-                            src="./assets/profile.jpg"
-                            height="32"
-                            width="32"
-                            alt="User Profile Image"
-                            loading="lazy"
-                        />
-                        <span class="user-name">Aman Kumar</span>
-                    </div>
-                    <div class="user">
-                        <img
-                            src="./assets/profile.jpg"
-                            height="32"
-                            width="32"
-                            alt="User Profile Image"
-                            loading="lazy"
-                        />
-                        <span class="user-name">Aman Kumar</span>
-                    </div>
-                    <div class="user">
-                        <img
-                            src="./assets/profile.jpg"
+                            src="./assets/avatar.png"
                             height="32"
                             width="32"
                             alt="User Profile Image"
@@ -84,10 +44,14 @@
 
     <!-- Section for displaying user profile -->
     <section id="user-profile-section" class="active">
+        <button class="user-profile-back" onclick="window.location.hash = ''">
+            <img alt="Back Icon" />
+            <span>Back</span>
+        </button>
         <div class="user-profile-info">
             <div class="user-profile-image">
                 <img
-                    src="./assets/profile.jpg"
+                    src="./assets/avatar.png"
                     alt="User Profile Image"
                     loading="lazy"
                 />
@@ -150,37 +114,26 @@
                 <!-- sort by older/newer -->
                 <div class="sort-by">
                     <span>Sort By :</span>
-                    <button href="#" class="active">Newest</button>
-                    <button href="#" class="">Oldest</button>
+                    <button id="newest" class="active">Newest</button>
+                    <button id="oldest" class="">Oldest</button>
                 </div>
+                <!-- per page -->
+                <select id="per-page">
+                    <option value="10" selected>10</option>
+                    <option value="20">20</option>
+                    <option value="50">50</option>
+                    <option value="100">100</option>
+                </select>
                 <!-- pagination -->
                 <div class="pagination">
-                    <button href="#" class="pagination-link">
-                        <img
-                            alt="Previous Icon"
-                            height="24"
-                            width="24"
-                            src="data:image/svg+xml,%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20class=%22icon%20icon-tabler%20icon-tabler-chevrons-left%22%20width=%2224%22%20height=%2224%22%20viewBox=%220%200%2024%2024%22%20stroke-width=%222%22%20stroke=%22currentColor%22%20fill=%22none%22%20stroke-linecap=%22round%22%20stroke-linejoin=%22round%22%3E%3Cpath%20stroke=%22none%22%20d=%22M0%200h24v24H0z%22%20fill=%22none%22/%3E%3Cpath%20d=%22M11%207l-5%205l5%205%22%20/%3E%3Cpath%20d=%22M17%207l-5%205l5%205%22%20/%3E%3C/svg%3E"
-                        />
+                    <button id="first" class="pagination-link">
+                        <img alt="Previous Icon" />
                     </button>
-                    <button href="#" class="pagination-link active">1</button>
-                    <!-- <button href="#" class="pagination-link">2</button>
-                    <button href="#" class="pagination-link">3</button>
-                    <button href="#" class="pagination-link">4</button>
-                    <button href="#" class="pagination-link active">5</button>
-                    <button href="#" class="pagination-link">6</button>
-                    <button href="#" class="pagination-link">7</button>
-                    <button href="#" class="pagination-link">8</button>
-                    <button href="#" class="pagination-link">9</button> -->
-                    <button href="#" class="pagination-link">
-                        <img
-                            alt="Next Icon"
-                            height="24"
-                            width="24"
-                            src="data:image/svg+xml,%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20class=%22icon%20icon-tabler%20icon-tabler-chevrons-right%22%20width=%2224%22%20height=%2224%22%20viewBox=%220%200%2024%2024%22%20stroke-width=%222%22%20stroke=%22currentColor%22%20fill=%22none%22%20stroke-linecap=%22round%22%20stroke-linejoin=%22round%22%3E%3Cpath%20stroke=%22none%22%20d=%22M0%200h24v24H0z%22%20fill=%22none%22/%3E%3Cpath%20d=%22M7%207l5%205l-5%205%22%20/%3E%3Cpath%20d=%22M13%207l5%205l-5%205%22%20/%3E%3C/svg%3E"
-                        />
+                    <button id="1" class="pagination-link active">1</button>
+                    <button id="last" class="pagination-link">
+                        <img alt="Next Icon" />
                     </button>
-            </div>
+                </div>
             </div>
         </div>
     </section>

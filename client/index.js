@@ -1,8 +1,12 @@
+import Pagination from "./components/Pagination/index.js"
 import debounce from "./components/debounce/index.js"
-import { getGitHubUser, searchGitHubUser } from "./components/prepareHtmlFromJson/index.js"
+import { getGitHubUser, getGitHubUserRepositories, searchGitHubUser } from "./components/prepareHtmlFromJson/index.js"
 import toggleElementClass from "./components/toggleElementClass/index.js"
 
+// instantiate the htmlElements object that will be reused
 const htmlElements = {}
+/** @type {Pagination} */
+var pagination = null
 
 // listen for window.location.hash change
 function hashChangeHandler () {
@@ -20,12 +24,23 @@ function hashChangeHandler () {
         getGitHubUser(username).then((html) => {
             // set the profile html in .user-profile-info
             document.querySelector(".user-profile-info").innerHTML = html
+            // hide repo-loader
+            toggleElementClass.hide("repo-loader")
+            // hide the username list
+            toggleElementClass.hide("username-list")
+            // hide the username input
+            toggleElementClass.hide("username-input")
+            // show the profile
+            toggleElementClass.show("profile")
+            // hide the loader
+            toggleElementClass.hide("linear-loader")
         }).catch((error) => {
             console.error(error)
+            alert("API rate limit exceeded. Please try again later.")
         })
-        // get the repositories html
-        // getGitHubUserRepositories
-
+        // load repositories
+        repoLoader({page: 1, perPage: 10, orderBy: "newest"})
+        
         return
     }
 
@@ -35,6 +50,24 @@ function hashChangeHandler () {
     toggleElementClass.hide("profile")
     // show the username input
     toggleElementClass.show("username-input")
+}
+
+/**
+ * 
+ * @param {Object} param0 
+ * @param {number} param0.page
+ * @param {number} param0.perPage
+ * @param {("newest"|"oldest")} param0.orderBy
+ */
+async function repoLoader ({page, perPage, orderBy}) {
+    // get the username from the window.location.hash
+    const username = window.location.hash.slice(1)
+    // get the repositories html
+    const {html, pageInfo} = await getGitHubUserRepositories(username, page, perPage, orderBy)
+    // set the repositories html in .user-repositories
+    htmlElements.userRepositoryList.innerHTML = html.join("")
+    // update the pagination
+    pagination.updateValues(pageInfo)
 }
 
 function findUser (event) {
@@ -88,6 +121,7 @@ window.addEventListener("load", () => {
     // gather html elements and store them in the htmlElements object that will be reused
     htmlElements.usernameInput = document.querySelector("#username-input")
     htmlElements.usernameInputList = document.querySelector("#username-input-list .users")
+    htmlElements.userRepositoryList = document.querySelector("#user-repositories-list")
 
     // attach handlers
     document.querySelector(`#username-input-form`).addEventListener("submit", findUser)
@@ -106,5 +140,7 @@ window.addEventListener("load", () => {
         toggleElementClass.show("username-input")
         toggleElementClass.hide("profile")
     }
+
+    pagination = new Pagination(repoLoader)
 
 }, true)

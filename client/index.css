@@ -207,11 +207,47 @@ body {
     width: 100%;
     margin-bottom: 1rem;
 }
+#user-profile-section .user-profile-back {
+    display: flex;
+    position: absolute;
+    align-items: center;
+    justify-content: center;
+    height: 40px;
+    border-radius: 4px;
+    border: var(--border-inactive);
+    color: var(--secondary-color);
+    background-color: white;
+    font-size: 1.1rem;
+    font-weight: 600;
+    box-shadow: var(--shadow-close);
+    cursor: pointer;
+    top: 1rem;
+    right: 1rem;
+    transition: var(--transition-all-linear);
+}
+#user-profile-section .user-profile-back:hover {
+    border: var(--border-active);
+    color: white;
+    box-shadow: var(--shadow-far);
+    background-color: var(--primary-color-light);
+}
+#user-profile-section .user-profile-back img {
+    width: 24px;
+    height: 24px;
+    content: url("data:image/svg+xml,%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20class=%22icon%20icon-tabler%20icon-tabler-chevron-left%22%20width=%2224%22%20height=%2224%22%20viewBox=%220%200%2024%2024%22%20stroke-width=%222%22%20stroke=%22currentColor%22%20fill=%22none%22%20stroke-linecap=%22round%22%20stroke-linejoin=%22round%22%3E%3Cpath%20stroke=%22none%22%20d=%22M0%200h24v24H0z%22%20fill=%22none%22/%3E%3Cpath%20d=%22M15%206l-6%206l6%206%22%20/%3E%3C/svg%3E");
+}
+/* media query for mobile */
+@media (max-width: 768px) {
+    #user-profile-section .user-profile-back {
+        top: 0;
+        right: 0.5rem;
+    }
+}
 
 #user-profile-section .user-profile-info .user-profile-image {
     display: block;
     width: 200px;
-    height: 200px;
+    /* height: 200px; */
     border-radius: 50%;
     margin-bottom: auto;
     border: var(--border-inactive);
@@ -301,9 +337,10 @@ body {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
     gap: 1rem;
-    align-items: center;
     justify-content: center;
+    align-content: start; /* Add this line */
     width: 100%;
+    align-items: stretch;
 }
 
 #user-repositories-list .user-repository {
@@ -342,8 +379,9 @@ body {
     display: flex;
     flex-direction: row;
     align-items: center;
-    justify-content: flex-start;
+    justify-content: flex-end;
     gap: 1rem;
+    flex-wrap: wrap;
 }
 #user-repositories-list .user-repository .user-repository-header .user-repository-stats > div {
     display: flex;
@@ -482,9 +520,15 @@ div.pagination button img {
 div.pagination button:last-child {
     border-radius: 0 4px 4px 0;
 }
+div.pagination button:last-child img {
+    content: url("data:image/svg+xml,%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20class=%22icon%20icon-tabler%20icon-tabler-chevrons-right%22%20width=%2224%22%20height=%2224%22%20viewBox=%220%200%2024%2024%22%20stroke-width=%222%22%20stroke=%22currentColor%22%20fill=%22none%22%20stroke-linecap=%22round%22%20stroke-linejoin=%22round%22%3E%3Cpath%20stroke=%22none%22%20d=%22M0%200h24v24H0z%22%20fill=%22none%22/%3E%3Cpath%20d=%22M7%207l5%205l-5%205%22%20/%3E%3Cpath%20d=%22M13%207l5%205l-5%205%22%20/%3E%3C/svg%3E");
+}
 div.pagination button:first-child {
     border-radius: 4px 0 0 4px;
     border-left: var(--border-inactive);
+}
+div.pagination button:first-child img {
+    content: url("data:image/svg+xml,%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20class=%22icon%20icon-tabler%20icon-tabler-chevrons-left%22%20width=%2224%22%20height=%2224%22%20viewBox=%220%200%2024%2024%22%20stroke-width=%222%22%20stroke=%22currentColor%22%20fill=%22none%22%20stroke-linecap=%22round%22%20stroke-linejoin=%22round%22%3E%3Cpath%20stroke=%22none%22%20d=%22M0%200h24v24H0z%22%20fill=%22none%22/%3E%3Cpath%20d=%22M11%207l-5%205l5%205%22%20/%3E%3Cpath%20d=%22M17%207l-5%205l5%205%22%20/%3E%3C/svg%3E");
 }
 div.pagination button:hover {
     border: var(--border-active);
@@ -536,4 +580,29 @@ div.user-repositories-footer .sort-by button.active {
     border: 0;
     color: white;
     background-color: var(--primary-color);
+}
+
+div.user-repositories-footer select#per-page {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100px;
+    height: 40px;
+    border-radius: 4px;
+    padding: 0 0.5rem;
+    border: var(--border-inactive);
+    color: var(--quaternary-color);
+    background-color: white;
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    margin-left: auto;
+    margin-right: 1rem;
+    transition: var(--transition-all-linear);
+}
+
+div.user-repositories-footer select#per-page:hover {
+    border: var(--border-active);
+    color: white;
+    background-color: var(--primary-color-light);
 }
